@@ -4,14 +4,14 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-3">
-            <img src="{{asset('/images/reza.jpg')}}" alt="reza" class="rounded-circle border">
+            <img src="{{ $user->profile->profileImage() }}" alt="reza" class="rounded-circle border w-100 img-fluid">
         </div>
 
         <div class="col-md-5">
             <div class="d-flex justify-content-between align-items-center">
-                <div class="fs-5">reza_asgharzadeh_</div>
+                <div class="fs-5">{{$user->username}}</div>
                 <button class="btn btn-sm px-4 btn-primary">Follow</button>
-                <button class="btn btn-sm btn-light border">Edit Profile</button>
+                <a href="{{route('profile.edit',$user->id)}}" class="btn btn-sm btn-light border">Edit Profile</a>
             </div>
 
             <div class="d-flex justify-content-between align-items-center pt-2">
@@ -20,14 +20,10 @@
                 <div><strong>10</strong> following</div>
             </div>
 
-            <div class="pt-4"><strong>Reza Asgharzadeh | رضااصغرزاده</strong></div>
+            <div class="pt-4"><strong>{{$user->name}}</strong></div>
             <div class="text-muted">Software</div>
-            <div>
-                ⭐️اینجا قراره در کنار هم برنامه‌نویسی رو یاد بگیریم 👨🏻‍💻
-                هشت ساعت جستجو به دنبال یک “سمی‌کالن” گم‌شده 🔎
-                ‼️طراحی سایت پذیرفته می‌شود‼️
-            </div>
-            <div><a href="https://wikiato.com" class="text-decoration-none">wikiato.com</a></div>
+            <div>{{$user->profile->description}}</div>
+            <div><a href="{{$user->profile->url}}" class="text-decoration-none">{{$user->profile->url}}</a></div>
         </div>
     </div>
     <hr>

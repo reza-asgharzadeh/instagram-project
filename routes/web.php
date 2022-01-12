@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,6 +17,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile/{user}/edit', [ProfileController::class,'edit'])->name('profile.edit');
+    Route::get('/profile/{user}', [ProfileController::class,'show'])->name('profile.show');
+    Route::post('/profile', [ProfileController::class,'update'])->name('profile.update');
 });
 
 Auth::routes();
