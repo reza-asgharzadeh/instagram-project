@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProfileUserPivotTable extends Migration
+class CreateProfileUserTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateProfileUserPivotTable extends Migration
      */
     public function up()
     {
-        Schema::create('profile_user_pivot', function (Blueprint $table) {
+        Schema::create('profile_user', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()
                 ->onUpdate('cascade')
@@ -32,6 +32,6 @@ class CreateProfileUserPivotTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('profile_user_pivot');
+        Schema::dropIfExists('profile_user');
     }
 }

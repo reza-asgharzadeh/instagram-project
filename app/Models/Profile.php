@@ -24,4 +24,9 @@ class Profile extends Model
         $imageUrl = ($this->image) ? $this->image : "default.png";
         return "/profiles/images/$imageUrl";
     }
+
+    public function followers()
+    {
+        return $this->belongsToMany(User::class);
+    }
 }

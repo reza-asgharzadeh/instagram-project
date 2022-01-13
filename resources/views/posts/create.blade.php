@@ -10,12 +10,16 @@
                 <div class="card-body">
                     <form method="POST" action="{{ route('post.store') }}" enctype="multipart/form-data">
                         @csrf
+
                         <div class="row mb-3">
-                            <label for="image" class="col-md-4 col-form-label text-md-end">{{ __('Image') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="image" type="file" class="form-control @error('image') is-invalid @enderror" name="image" autocomplete="image">
-
+                            <div class="col-md-12">
+                                <div class="avatar-wrapper avatar-wrappers">
+                                    <img class="profile-pic" src="{{asset('posts/images/default_post.jpg')}}">
+                                    <div class="upload-button">
+                                        <i class="fa fa-camera" aria-hidden="true"></i>
+                                    </div>
+                                    <input class="file-upload" type="file" name="image" accept="image/*">
+                                </div>
                                 @error('image')
                                 <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

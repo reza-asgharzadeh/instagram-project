@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('profiles.show');
+    return view('welcome');
 });
 
 Route::middleware('auth')->group(function () {
@@ -30,7 +30,11 @@ Route::middleware('auth')->group(function () {
     Route::post('/post', [PostController::class,'store'])->name('post.store');
     Route::get('/post/{post}', [PostController::class,'show'])->name('post.show');
 
-    Route::post('follow/{user}', [FollowsController::class,'store']);
+    Route::post('/follow/{user}', [FollowsController::class,'store']);
+    Route::get('/following/{user}/posts', [FollowsController::class,'showFollowingsPost'])->name('show.following');
+
+    Route::get('/following/{user}', [FollowsController::class,'following'])->name('following.list');
+    Route::get('/followers/{user}', [FollowsController::class,'followers'])->name('followers.list');
 });
 
 Auth::routes();
