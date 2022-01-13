@@ -8,4 +8,19 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'caption',
+        'image',
+        'user_id'
+    ];
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+
+    public function postImage(){
+        $imageUrl = ($this->image) ? $this->image : "default.png";
+        return "/posts/images/$imageUrl";
+    }
 }

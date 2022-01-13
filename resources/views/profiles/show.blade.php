@@ -28,18 +28,26 @@
     </div>
     <hr>
     <div class="row">
-        <div class="d-flex justify-content-center">
-            <div class="mx-4">posts</div>
-            <div class="mx-4">videos</div>
-            <div class="mx-4">saved</div>
-            <div class="mx-4">Tagged</div>
+        <div class="col-md-2">
+            <div class="d-flex">
+                <a href="{{route('post.create')}}" class="text-decoration-none text-decoration-none">Create a new post</a>
+            </div>
+        </div>
+        <div class="col-md-10">
+            <div class="d-flex justify-content-center">
+                <div class="mx-4">posts</div>
+                <div class="mx-4">videos</div>
+                <div class="mx-4">saved</div>
+                <div class="mx-4">Tagged</div>
+            </div>
         </div>
     </div>
     <div class="row pt-2">
-        <div class="col-md-4 mb-4"><img src="{{asset('/images/1.png')}}" alt="post" class="img-fluid" style="width: 400px;height:400px"></div>
-        <div class="col-md-4 mb-4"><img src="{{asset('/images/2.png')}}" alt="post" class="img-fluid" style="width: 400px;height:400px"></div>
-        <div class="col-md-4 mb-4"><img src="{{asset('/images/3.png')}}" alt="post" class="img-fluid" style="width: 400px;height:400px"></div>
-        <div class="col-md-4 mb-4"><img src="{{asset('/images/3.png')}}" alt="post" class="img-fluid" style="width: 400px;height:400px"></div>
+        @foreach($user->posts as $post)
+        <div class="col-md-4 mb-4">
+            <a href="{{ route('post.show',$post->id) }}"><img src="{{ $post->postImage() }}" alt="post" class="img-fluid" style="width: 400px;height:400px"></a>
+        </div>
+        @endforeach
     </div>
 </div>
 @endsection
